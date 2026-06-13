@@ -1,0 +1,73 @@
+name: OpenSky Network REST API Rate Limits
+description: Rate limits for the OpenSky Network REST API are implemented via a credit system. Credits are consumed per request based on geographic bounding box size (for state vectors) or time range (for flight and track queries). Separate daily or hourly credit buckets apply per account tier.
+url: https://openskynetwork.github.io/opensky-api/rest.html
+rateLimits:
+
+  - name: Anonymous Daily Credits
+    description: Unauthenticated callers receive 400 API credits refreshed each day.
+    limit: 400
+    unit: day
+    tier: Anonymous
+
+  - name: Standard User Daily Credits
+    description: Registered authenticated users receive 4,000 API credits refreshed each day.
+    limit: 4000
+    unit: day
+    tier: Standard
+
+  - name: Active Feeder Daily Credits
+    description: Authenticated users whose ADS-B receiver achieves at least 30% uptime in the current month receive 8,000 API credits refreshed each day.
+    limit: 8000
+    unit: day
+    tier: Active Feeder
+
+  - name: Licensed User Hourly Credits
+    description: Commercially licensed users receive 14,400 API credits refreshed every hour, enabling sustained high-frequency access.
+    limit: 14400
+    unit: hour
+    tier: Licensed
+
+creditCosts:
+  statesAll:
+    description: Credit cost for GET /states/all requests based on bounding box area in square degrees.
+    tiers:
+      - condition: Bounding box <= 25 sq deg or serial queries
+        credits: 1
+      - condition: Bounding box 25–100 sq deg
+        credits: 2
+      - condition: Bounding box 100–400 sq deg
+        credits: 3
+      - condition: Bounding box > 400 sq deg or global query
+        credits: 4
+
+  flightsAndTracks:
+    description: Credit cost for GET /flights/* and GET /tracks requests based on number of day partitions crossed in the queried time range.
+    tiers:
+      - condition: Live query or less than 24 hours
+        credits: 4
+      - condition: 1–2 day partitions
+        credits: 30
+      - condition: 3–10 day partitions
+        credits: 60
+        perPartition: true
+      - condition: 11–25 day partitions
+        credits: 480
+        perPartition: true
+      - condition: More than 25 day partitions
+        credits: 960
+        perPartition: true
+
+headers:
+  - name: X-Rate-Limit-Remaining
+    description: Number of API credits remaining in the current period.
+  - name: X-Rate-Limit-Retry-After-Seconds
+    description: Seconds to wait before retrying after receiving a 429 Too Many Requests response.
+
+errors:
+  - code: 429
+    message: Too Many Requests
+    description: Returned when the caller has exhausted their available API credits for the current period.
+
+exemptions:
+  - endpoint: /states/own
+    description: Retrieving state vectors from the caller's own ADS-B sensors is not subject to rate limiting or credit costs.

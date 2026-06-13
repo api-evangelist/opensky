@@ -1,0 +1,46 @@
+name: OpenSky Network Trino Historical Data Plans
+description: Access tiers for the OpenSky Network Trino SQL interface providing access to the full historical ADS-B dataset. Access is gated by eligibility review and is free for qualifying non-commercial research entities.
+url: https://openskynetwork.github.io/opensky-api/trino.html
+plans:
+  - name: Research Access (Free)
+    description: Free Trino SQL access for university-affiliated researchers, governmental organisations, and aviation authorities conducting aviation-related research or incident investigations. Requires account registration and data access request approval.
+    url: https://opensky-network.org/my-opensky
+    price: 0.00
+    currency: USD
+    unit: month
+    eligibility:
+      - University-affiliated researchers
+      - Governmental organisations
+      - Aviation authorities
+    rateLimits:
+      - name: Concurrent Queries
+        limit: 2
+        unit: connection
+      - name: Queued Queries
+        limit: 2
+        unit: connection
+      - name: Query Timeout
+        limit: 30
+        unit: minutes
+    restrictions:
+      - Bulk downloads of complete multi-day datasets are prohibited without special arrangements.
+      - Every query must include partition filters (hour or day) to avoid full table scans.
+      - Violating query guidelines may result in account suspension.
+
+  - name: Commercial / Private Access
+    description: Private companies and commercial entities must obtain a written license from OpenSky Network to use the Trino historical data interface. Pricing and terms are determined on a case-by-case basis through direct negotiation.
+    url: https://opensky-network.org/about/contact
+    price: 0.00
+    currency: USD
+    unit: month
+    priceNotes: Contact contact@opensky-network.org for commercial licensing; pricing is negotiated individually.
+    rateLimits:
+      - name: Concurrent Queries
+        limit: 2
+        unit: connection
+      - name: Queued Queries
+        limit: 2
+        unit: connection
+      - name: Query Timeout
+        limit: 30
+        unit: minutes

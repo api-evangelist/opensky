@@ -1,0 +1,24 @@
+name: OpenSky Network Trino Historical Data Rate Limits
+description: Concurrency and query timeout limits for the OpenSky Network Trino SQL interface. All approved users share the same operational constraints regardless of entity type.
+url: https://openskynetwork.github.io/opensky-api/trino.html
+rateLimits:
+
+  - name: Concurrent Queries
+    description: Maximum number of queries a single user may run simultaneously in the Trino cluster.
+    limit: 2
+    unit: connection
+
+  - name: Queued Queries
+    description: Maximum number of queries a single user may have waiting in the Trino queue at any time.
+    limit: 2
+    unit: connection
+
+  - name: Query Timeout
+    description: Maximum wall-clock time (including queue time) before a query is automatically cancelled. Queries expected to exceed 5 minutes should be batched or reduced in scope.
+    limit: 30
+    unit: minutes
+
+guidelines:
+  - Every query must include a partition filter on either the `hour` or `day` column to avoid full table scans across the entire dataset.
+  - Bulk downloads of complete multi-day datasets are prohibited without prior special arrangements with OpenSky Network.
+  - Repeated violation of query guidelines may result in account suspension or banning.

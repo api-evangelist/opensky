@@ -1,0 +1,83 @@
+name: OpenSky Network REST API Plans
+description: Access tiers for the OpenSky Network REST API based on account type and ADS-B receiver contribution status. Credits are allocated daily (or hourly for licensed users) and consumed per request based on geographic scope or time range queried.
+url: https://openskynetwork.github.io/opensky-api/rest.html
+plans:
+  - name: Anonymous
+    description: Unauthenticated access to the REST API with limited resolution and daily credit quota. Only current state vectors available, with 10-second time resolution.
+    url: https://openskynetwork.github.io/opensky-api/rest.html
+    price: 0.00
+    currency: USD
+    unit: day
+    rateLimits:
+      - name: Daily API Credits
+        limit: 400
+        unit: day
+    quotas:
+      - name: Time Resolution
+        limit: 10
+        unit: seconds
+      - name: Historical Lookback
+        limit: 0
+        unit: hours
+        description: No historical data access; current vectors only.
+
+  - name: Standard (Authenticated)
+    description: Authenticated access for registered OpenSky Network users. Higher daily credit quota and access to historical state vectors up to one hour in the past, with 5-second time resolution.
+    url: https://opensky-network.org/register
+    price: 0.00
+    currency: USD
+    unit: day
+    rateLimits:
+      - name: Daily API Credits
+        limit: 4000
+        unit: day
+    quotas:
+      - name: Time Resolution
+        limit: 5
+        unit: seconds
+      - name: Historical Lookback
+        limit: 1
+        unit: hours
+      - name: Track Data Lookback
+        limit: 30
+        unit: days
+
+  - name: Active Feeder
+    description: Authenticated users who operate an ADS-B receiver with at least 30% uptime in the current month receive double the daily credit allowance.
+    url: https://opensky-network.org/contribute
+    price: 0.00
+    currency: USD
+    unit: day
+    rateLimits:
+      - name: Daily API Credits
+        limit: 8000
+        unit: day
+    quotas:
+      - name: Time Resolution
+        limit: 5
+        unit: seconds
+      - name: Historical Lookback
+        limit: 1
+        unit: hours
+      - name: Track Data Lookback
+        limit: 30
+        unit: days
+
+  - name: Licensed (Commercial)
+    description: Commercial or operational use requiring a written license agreement with OpenSky Network. Credits replenish hourly rather than daily, enabling sustained high-volume programmatic access. Pricing determined by direct negotiation.
+    url: https://opensky-network.org/about/contact
+    price: 0.00
+    currency: USD
+    unit: hour
+    priceNotes: Contact contact@opensky-network.org for commercial licensing; pricing is negotiated on a case-by-case basis.
+    rateLimits:
+      - name: Hourly API Credits
+        limit: 14400
+        unit: hour
+    quotas:
+      - name: Time Resolution
+        limit: 5
+        unit: seconds
+      - name: Track Data Lookback
+        limit: 30
+        unit: days

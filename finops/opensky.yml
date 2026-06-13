@@ -1,0 +1,54 @@
+name: OpenSky Network FinOps
+description: Financial operations and cost management guidance for consuming the OpenSky Network API. The REST API uses a credit-based metering system; the Trino historical interface is free for qualifying researchers. Commercial use in any capacity requires a prior written agreement.
+url: https://opensky-network.org/about/terms-of-use
+
+costModel:
+  type: Credit-based
+  description: API consumption is metered in credits. Credits replenish on a daily basis for free tiers (Anonymous, Standard, Active Feeder) and on an hourly basis for licensed commercial users. There is no monetary charge for credit consumption on free tiers.
+
+tiers:
+  - name: Anonymous (Free)
+    monthlyCost: 0.00
+    currency: USD
+    credits: 400
+    creditPeriod: day
+    notes: No account required. Limited to current state vectors only; no historical lookback.
+
+  - name: Standard (Free, Registration Required)
+    monthlyCost: 0.00
+    currency: USD
+    credits: 4000
+    creditPeriod: day
+    notes: Requires a free OpenSky Network account. Unlocks 5-second resolution and 1-hour historical lookback.
+
+  - name: Active Feeder (Free, ADS-B Receiver Required)
+    monthlyCost: 0.00
+    currency: USD
+    credits: 8000
+    creditPeriod: day
+    notes: Requires operating an ADS-B receiver with at least 30% uptime in the current month. No monetary cost beyond hardware and connectivity.
+
+  - name: Trino Research Access (Free, Approval Required)
+    monthlyCost: 0.00
+    currency: USD
+    notes: Free SQL access to the full historical dataset for university-affiliated researchers, governmental organisations, and aviation authorities. Must apply and be approved via the OpenSky account portal.
+
+  - name: Licensed Commercial
+    monthlyCost: null
+    currency: USD
+    credits: 14400
+    creditPeriod: hour
+    notes: Pricing determined by direct negotiation with OpenSky Network. Required for any commercial or operational integration. Contact contact@opensky-network.org.
+
+costOptimization:
+  - tip: Use bounding box filters on /states/all to minimize credit consumption. Queries covering 25 sq deg or less cost only 1 credit versus 4 credits for global queries.
+  - tip: Retrieve /states/own (your own sensor data) at no credit cost to avoid quota consumption during development.
+  - tip: Become an Active Feeder by running an ADS-B receiver to double your daily credit allowance at no monetary cost.
+  - tip: For historical analysis, use the Trino interface if you qualify, as it does not consume REST API credits.
+  - tip: Cache state vector responses locally; the data updates approximately every 5–10 seconds so polling more frequently wastes credits without gaining freshness.
+  - tip: Monitor the X-Rate-Limit-Remaining response header to track credit consumption and avoid unexpected 429 errors.
+
+commercialNotes:
+  - Any operational use of the REST API — including integration into a live product or automated system — requires a prior written agreement with OpenSky Network, even for non-profit or governmental entities.
+  - The data is licensed for non-commercial research and educational use by default under the OpenSky Network Terms of Use.
+  - Cloud provider IP ranges (AWS, GCP, Azure) may be blocked due to abuse; commercial users must arrange IP whitelisting through direct contact.

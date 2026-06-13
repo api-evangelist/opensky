@@ -1,0 +1,95 @@
+name: OpenSky Network
+description: Open-source flight tracking network with a REST API for accessing real-time and historical ADS-B aircraft state vectors, flight tracks, and airport arrivals and departures. The network is powered by a community of volunteer ADS-B receiver operators and is intended for non-commercial research and educational use.
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Aviation
+  - Flight Tracking
+  - ADS-B
+  - Aircraft
+  - Airport
+  - Real-Time
+  - Historical Data
+apis:
+  - name: OpenSky Network REST API
+    description: REST API for retrieving real-time and historical ADS-B aircraft state vectors, flight tracks, and airport arrival and departure data from the OpenSky Network crowd-sourced receiver network.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://openskynetwork.github.io/opensky-api/rest.html
+    baseURL: https://opensky-network.org/api
+    tags:
+      - Aircraft State Vectors
+      - Flight Tracks
+      - Airport Arrivals
+      - Airport Departures
+      - ADS-B
+    properties:
+      - type: Documentation
+        url: https://openskynetwork.github.io/opensky-api/rest.html
+      - type: OpenAPI
+        url: https://opensky-network.org/api/v1/api-docs
+      - type: Authentication
+        url: https://openskynetwork.github.io/opensky-api/rest.html#authentication
+      - type: RateLimits
+        url: https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/rate-limits/opensky-rest-api.yml
+      - type: Plans
+        url: https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/plans/opensky-rest-api.yml
+    contact:
+      - FN: OpenSky Network
+        email: contact@opensky-network.org
+        url: https://opensky-network.org/about/contact
+
+  - name: OpenSky Network Trino Historical Data API
+    description: SQL query interface powered by Trino for accessing the full OpenSky historical dataset including state vectors, raw Mode S messages, ADS-C and MLAT data, and flight records. Available to university-affiliated researchers, governmental organisations, and aviation authorities.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://openskynetwork.github.io/opensky-api/trino.html
+    baseURL: https://trino.opensky-network.org
+    tags:
+      - Historical Data
+      - State Vectors
+      - Mode S
+      - ADS-C
+      - MLAT
+      - SQL
+    properties:
+      - type: Documentation
+        url: https://openskynetwork.github.io/opensky-api/trino.html
+      - type: RateLimits
+        url: https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/rate-limits/opensky-trino-api.yml
+      - type: Plans
+        url: https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/plans/opensky-trino-api.yml
+    contact:
+      - FN: OpenSky Network
+        email: contact@opensky-network.org
+        url: https://opensky-network.org/about/contact
+
+common:
+  - type: GitHub
+    url: https://github.com/openskynetwork
+  - type: GitHub Repository
+    url: https://github.com/openskynetwork/opensky-api
+  - type: Documentation
+    url: https://openskynetwork.github.io/opensky-api/
+  - type: TermsOfService
+    url: https://opensky-network.org/about/terms-of-use
+  - type: Status
+    url: https://opensky-network.org/network/status
+  - type: Login
+    url: https://opensky-network.org/login
+  - type: Register
+    url: https://opensky-network.org/register
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/finops/opensky.yml
+  - type: Contact
+    url: https://opensky-network.org/about/contact
+  - type: Forum
+    url: https://community.opensky-network.org
+  - type: Twitter
+    url: https://twitter.com/openskynetwork
+
+maintainers:
+  - FN: API Evangelist
+    url: https://apievangelist.com
+    email: kin@apievangelist.com
