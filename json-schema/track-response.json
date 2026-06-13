@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/json-schema/track-response.json",
+  "title": "TrackResponse",
+  "description": "A track response from the OpenSky Network REST API representing the trajectory of an aircraft as a sequence of waypoints.",
+  "type": "object",
+  "required": ["icao24", "startTime", "endTime", "path"],
+  "properties": {
+    "icao24": {
+      "type": "string",
+      "description": "Unique ICAO 24-bit address of the transponder in lower-case hex string representation.",
+      "pattern": "^[0-9a-f]{6}$",
+      "example": "3c6444"
+    },
+    "startTime": {
+      "type": "integer",
+      "description": "Time of the first waypoint in Unix time (seconds since epoch).",
+      "example": 1517220000
+    },
+    "endTime": {
+      "type": "integer",
+      "description": "Time of the last waypoint in Unix time (seconds since epoch).",
+      "example": 1517223600
+    },
+    "callsign": {
+      "type": ["string", "null"],
+      "description": "Callsign of the aircraft. Can be null.",
+      "example": "DLH400 "
+    },
+    "path": {
+      "type": "array",
+      "description": "Array of waypoints ordered by time. Each waypoint is an array with 6 indexed fields.",
+      "items": {
+        "$ref": "#/$defs/Waypoint"
+      }
+    }
+  },
+  "$defs": {
+    "Waypoint": {
+      "type": "array",
+      "title": "Waypoint",
+      "description": "A single waypoint in an aircraft track with 6 indexed fields: [time, latitude, longitude, baro_altitude, true_track, on_ground].",
+      "minItems": 6,
+      "maxItems": 6,
+      "prefixItems": [
+        {
+          "type": "integer",
+          "title": "time",
+          "description": "Unix timestamp of this waypoint.",
+          "example": 1517220060
+        },
+        {
+          "type": ["number", "null"],
+          "title": "latitude",
+          "description": "WGS-84 latitude in decimal degrees.",
+          "minimum": -90,
+          "maximum": 90,
+          "example": 50.0379
+        },
+        {
+          "type": ["number", "null"],
+          "title": "longitude",
+          "description": "WGS-84 longitude in decimal degrees.",
+          "minimum": -180,
+          "maximum": 180,
+          "example": 8.5622
+        },
+        {
+          "type": ["number", "null"],
+          "title": "baro_altitude",
+          "description": "Barometric altitude in meters.",
+          "example": 609.6
+        },
+        {
+          "type": ["number", "null"],
+          "title": "true_track",
+          "description": "True track in decimal degrees clockwise from north.",
+          "minimum": 0,
+          "maximum": 360,
+          "example": 285.3
+        },
+        {
+          "type": "boolean",
+          "title": "on_ground",
+          "description": "Boolean indicating if the aircraft is on the ground at this waypoint.",
+          "example": false
+        }
+      ]
+    }
+  }
+}

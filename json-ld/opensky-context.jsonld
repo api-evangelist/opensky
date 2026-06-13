@@ -1,0 +1,147 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "opensky": "https://opensky-network.org/api/vocab/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+
+    "StateVectorResponse": "opensky:StateVectorResponse",
+    "FlightObject": "opensky:FlightObject",
+    "TrackResponse": "opensky:TrackResponse",
+    "Waypoint": "opensky:Waypoint",
+
+    "time": {
+      "@id": "opensky:time",
+      "@type": "xsd:integer"
+    },
+    "states": {
+      "@id": "opensky:states",
+      "@container": "@list"
+    },
+    "icao24": {
+      "@id": "opensky:icao24",
+      "@type": "xsd:string"
+    },
+    "callsign": {
+      "@id": "opensky:callsign",
+      "@type": "xsd:string"
+    },
+    "origin_country": {
+      "@id": "opensky:originCountry",
+      "@type": "xsd:string"
+    },
+    "time_position": {
+      "@id": "opensky:timePosition",
+      "@type": "xsd:integer"
+    },
+    "last_contact": {
+      "@id": "opensky:lastContact",
+      "@type": "xsd:integer"
+    },
+    "longitude": {
+      "@id": "geo:long",
+      "@type": "xsd:decimal"
+    },
+    "latitude": {
+      "@id": "geo:lat",
+      "@type": "xsd:decimal"
+    },
+    "baro_altitude": {
+      "@id": "opensky:baroAltitude",
+      "@type": "xsd:decimal"
+    },
+    "on_ground": {
+      "@id": "opensky:onGround",
+      "@type": "xsd:boolean"
+    },
+    "velocity": {
+      "@id": "opensky:velocity",
+      "@type": "xsd:decimal"
+    },
+    "true_track": {
+      "@id": "opensky:trueTrack",
+      "@type": "xsd:decimal"
+    },
+    "vertical_rate": {
+      "@id": "opensky:verticalRate",
+      "@type": "xsd:decimal"
+    },
+    "sensors": {
+      "@id": "opensky:sensors",
+      "@container": "@list"
+    },
+    "geo_altitude": {
+      "@id": "opensky:geoAltitude",
+      "@type": "xsd:decimal"
+    },
+    "squawk": {
+      "@id": "opensky:squawk",
+      "@type": "xsd:string"
+    },
+    "spi": {
+      "@id": "opensky:spi",
+      "@type": "xsd:boolean"
+    },
+    "position_source": {
+      "@id": "opensky:positionSource",
+      "@type": "xsd:integer"
+    },
+    "category": {
+      "@id": "opensky:category",
+      "@type": "xsd:integer"
+    },
+    "firstSeen": {
+      "@id": "opensky:firstSeen",
+      "@type": "xsd:integer"
+    },
+    "lastSeen": {
+      "@id": "opensky:lastSeen",
+      "@type": "xsd:integer"
+    },
+    "estDepartureAirport": {
+      "@id": "opensky:estDepartureAirport",
+      "@type": "xsd:string"
+    },
+    "estArrivalAirport": {
+      "@id": "opensky:estArrivalAirport",
+      "@type": "xsd:string"
+    },
+    "estDepartureAirportHorizDistance": {
+      "@id": "opensky:estDepartureAirportHorizDistance",
+      "@type": "xsd:integer"
+    },
+    "estDepartureAirportVertDistance": {
+      "@id": "opensky:estDepartureAirportVertDistance",
+      "@type": "xsd:integer"
+    },
+    "estArrivalAirportHorizDistance": {
+      "@id": "opensky:estArrivalAirportHorizDistance",
+      "@type": "xsd:integer"
+    },
+    "estArrivalAirportVertDistance": {
+      "@id": "opensky:estArrivalAirportVertDistance",
+      "@type": "xsd:integer"
+    },
+    "departureAirportCandidatesCount": {
+      "@id": "opensky:departureAirportCandidatesCount",
+      "@type": "xsd:integer"
+    },
+    "arrivalAirportCandidatesCount": {
+      "@id": "opensky:arrivalAirportCandidatesCount",
+      "@type": "xsd:integer"
+    },
+    "startTime": {
+      "@id": "opensky:startTime",
+      "@type": "xsd:integer"
+    },
+    "endTime": {
+      "@id": "opensky:endTime",
+      "@type": "xsd:integer"
+    },
+    "path": {
+      "@id": "opensky:path",
+      "@container": "@list"
+    }
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/json-schema/state-vector-response.json",
+  "title": "StateVectorResponse",
+  "description": "Response object from the OpenSky Network REST API state vector endpoints containing time and an array of aircraft state vectors.",
+  "type": "object",
+  "properties": {
+    "time": {
+      "type": "integer",
+      "description": "The time which the state vectors in this response are associated with. All vectors represent the state of a vehicle within the interval [time-1, time].",
+      "example": 1458564121
+    },
+    "states": {
+      "type": ["array", "null"],
+      "description": "The state vectors as a two-dimensional array. Each row represents a state vector with 18 indexed fields. Is null if no states are available.",
+      "items": {
+        "$ref": "#/$defs/StateVector"
+      }
+    }
+  },
+  "$defs": {
+    "StateVector": {
+      "type": "array",
+      "title": "StateVector",
+      "description": "A single aircraft state vector containing 18 indexed fields representing the aircraft's current state.",
+      "minItems": 17,
+      "maxItems": 18,
+      "prefixItems": [
+        {
+          "type": "string",
+          "title": "icao24",
+          "description": "Unique ICAO 24-bit address of the transponder in lower-case hex string representation.",
+          "pattern": "^[0-9a-f]{6}$",
+          "example": "3c6444"
+        },
+        {
+          "type": ["string", "null"],
+          "title": "callsign",
+          "description": "Callsign of the vehicle (8 chars). Can be null if no callsign has been received.",
+          "maxLength": 8,
+          "example": "DLH400  "
+        },
+        {
+          "type": "string",
+          "title": "origin_country",
+          "description": "Country name inferred from the ICAO 24-bit address.",
+          "example": "Germany"
+        },
+        {
+          "type": ["integer", "null"],
+          "title": "time_position",
+          "description": "Unix timestamp (seconds) for the last position update. Can be null if no position report was received by OpenSky within the past 15 seconds.",
+          "example": 1458564120
+        },
+        {
+          "type": "integer",
+          "title": "last_contact",
+          "description": "Unix timestamp (seconds) for the last update in general. Updated for any new valid message received from the transponder.",
+          "example": 1458564121
+        },
+        {
+          "type": ["number", "null"],
+          "title": "longitude",
+          "description": "WGS-84 longitude in decimal degrees. Can be null.",
+          "minimum": -180,
+          "maximum": 180,
+          "example": 8.5432
+        },
+        {
+          "type": ["number", "null"],
+          "title": "latitude",
+          "description": "WGS-84 latitude in decimal degrees. Can be null.",
+          "minimum": -90,
+          "maximum": 90,
+          "example": 47.2231
+        },
+        {
+          "type": ["number", "null"],
+          "title": "baro_altitude",
+          "description": "Barometric altitude in meters. Can be null.",
+          "example": 9144.0
+        },
+        {
+          "type": "boolean",
+          "title": "on_ground",
+          "description": "Boolean value which indicates if the position was retrieved from a surface position report.",
+          "example": false
+        },
+        {
+          "type": ["number", "null"],
+          "title": "velocity",
+          "description": "Velocity over ground in m/s. Can be null.",
+          "minimum": 0,
+          "example": 251.2
+        },
+        {
+          "type": ["number", "null"],
+          "title": "true_track",
+          "description": "True track in decimal degrees clockwise from north (north=0 degrees). Can be null.",
+          "minimum": 0,
+          "maximum": 360,
+          "example": 87.5
+        },
+        {
+          "type": ["number", "null"],
+          "title": "vertical_rate",
+          "description": "Vertical rate in m/s. Positive value indicates climbing, negative value indicates descending. Can be null.",
+          "example": 0.0
+        },
+        {
+          "type": ["array", "null"],
+          "title": "sensors",
+          "description": "IDs of the receivers which contributed to this state vector. Is null if no filtering for sensor was used in the request.",
+          "items": {
+            "type": "integer"
+          },
+          "example": null
+        },
+        {
+          "type": ["number", "null"],
+          "title": "geo_altitude",
+          "description": "Geometric altitude in meters. Can be null.",
+          "example": 9448.8
+        },
+        {
+          "type": ["string", "null"],
+          "title": "squawk",
+          "description": "The transponder code aka Squawk. Can be null.",
+          "example": "1000"
+        },
+        {
+          "type": "boolean",
+          "title": "spi",
+          "description": "Whether flight status indicates special purpose indicator.",
+          "example": false
+        },
+        {
+          "type": "integer",
+          "title": "position_source",
+          "description": "Origin of this state's position. 0=ADS-B, 1=ASTERIX, 2=MLAT, 3=FLARM.",
+          "enum": [0, 1, 2, 3]
+        },
+        {
+          "type": "integer",
+          "title": "category",
+          "description": "Aircraft category. 0=No information, 1=No ADS-B Emitter Category Info, 2=Light, 3=Small, 4=Large, 5=High Vortex Large, 6=Heavy, 7=High Performance, 8=Rotorcraft, 9=Glider, 10=Lighter-than-air, 11=Parachutist, 12=Ultralight, 13=Reserved, 14=UAV, 15=Space vehicle, 16=Surface Emergency, 17=Surface Service, 18=Point Obstacle, 19=Cluster Obstacle, 20=Line Obstacle.",
+          "minimum": 0,
+          "maximum": 20
+        }
+      ]
+    }
+  }
+}

@@ -29,7 +29,7 @@ apis:
       - type: Documentation
         url: https://openskynetwork.github.io/opensky-api/rest.html
       - type: OpenAPI
-        url: https://opensky-network.org/api/v1/api-docs
+        url: https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/openapi/opensky-rest-api.json
       - type: Authentication
         url: https://openskynetwork.github.io/opensky-api/rest.html#authentication
       - type: RateLimits

@@ -1,0 +1,30 @@
+[
+  {
+    "icao24": "3c6444",
+    "firstSeen": 1517220000,
+    "estDepartureAirport": "EDDF",
+    "lastSeen": 1517223600,
+    "estArrivalAirport": "EGLL",
+    "callsign": "DLH400 ",
+    "estDepartureAirportHorizDistance": 1250,
+    "estDepartureAirportVertDistance": 304,
+    "estArrivalAirportHorizDistance": 1800,
+    "estArrivalAirportVertDistance": 152,
+    "departureAirportCandidatesCount": 0,
+    "arrivalAirportCandidatesCount": 1
+  },
+  {
+    "icao24": "4b1816",
+    "firstSeen": 1517221800,
+    "estDepartureAirport": "LSZH",
+    "lastSeen": 1517229000,
+    "estArrivalAirport": "LEBL",
+    "callsign": "SWR245 ",
+    "estDepartureAirportHorizDistance": 890,
+    "estDepartureAirportVertDistance": 210,
+    "estArrivalAirportHorizDistance": 2100,
+    "estArrivalAirportVertDistance": 198,
+    "departureAirportCandidatesCount": 0,
+    "arrivalAirportCandidatesCount": 0
+  }
+]
