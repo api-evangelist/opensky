@@ -1,6 +1,6 @@
 name: OpenSky Network
 description: Open-source flight tracking network with a REST API for accessing real-time and historical ADS-B aircraft state vectors, flight tracks, and airport arrivals and departures. The network is powered by a community of volunteer ADS-B receiver operators and is intended for non-commercial research and educational use.
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -16,7 +16,7 @@ tags:
 apis:
   - name: OpenSky Network REST API
     description: REST API for retrieving real-time and historical ADS-B aircraft state vectors, flight tracks, and airport arrival and departure data from the OpenSky Network crowd-sourced receiver network.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://openskynetwork.github.io/opensky-api/rest.html
     baseURL: https://opensky-network.org/api
     tags:
@@ -43,7 +43,7 @@ apis:
 
   - name: OpenSky Network Trino Historical Data API
     description: SQL query interface powered by Trino for accessing the full OpenSky historical dataset including state vectors, raw Mode S messages, ADS-C and MLAT data, and flight records. Available to university-affiliated researchers, governmental organisations, and aviation authorities.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://openskynetwork.github.io/opensky-api/trino.html
     baseURL: https://trino.opensky-network.org
     tags:
