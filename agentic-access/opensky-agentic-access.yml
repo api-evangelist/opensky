@@ -1,0 +1,84 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/opensky-rest-api.json
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 7
+  by_action_class:
+    connected: 7
+  by_consequence:
+    read: 7
+  human_in_the_loop_required: 0
+operations:
+- path: /states/all
+  method: get
+  operationId: getStateVectorsAll
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /states/own
+  method: get
+  operationId: getOwnStateVectors
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /flights/all
+  method: get
+  operationId: getFlightsAll
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /flights/aircraft
+  method: get
+  operationId: getFlightsByAircraft
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /flights/arrival
+  method: get
+  operationId: getFlightsByArrivalAirport
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /flights/departure
+  method: get
+  operationId: getFlightsByDepartureAirport
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /tracks
+  method: get
+  operationId: getTrackByAircraft
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

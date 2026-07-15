@@ -66,6 +66,8 @@ apis:
         url: https://opensky-network.org/about/contact
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/opensky-agentic-access.yml
   - type: DomainSecurity
     url: security/opensky-domain-security.yml
   - type: Authentication
