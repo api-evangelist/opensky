@@ -1,0 +1,132 @@
+openapi: 3.1.0
+info:
+  title: OpenSky Network REST Flights Tracks API
+  description: REST API for retrieving real-time and historical ADS-B aircraft state vectors, flight tracks, and airport arrival and departure data from the OpenSky Network crowd-sourced receiver network. Intended for non-commercial research and educational use.
+  version: 1.0.0
+  termsOfService: https://opensky-network.org/about/terms-of-use
+  contact:
+    name: OpenSky Network
+    email: contact@opensky-network.org
+    url: https://opensky-network.org/about/contact
+  license:
+    name: OpenSky Network Terms of Use
+    url: https://opensky-network.org/about/terms-of-use
+servers:
+- url: https://opensky-network.org/api
+  description: OpenSky Network REST API
+security:
+- {}
+- bearerAuth: []
+tags:
+- name: Tracks
+  description: Endpoints for retrieving aircraft trajectory tracks with detailed waypoint data.
+paths:
+  /tracks:
+    get:
+      operationId: getTrackByAircraft
+      summary: Get track by aircraft
+      description: Retrieve the trajectory for a certain aircraft at a given time. The track is a list of waypoints containing position, altitude, and velocity information. Set time to 0 to get the live track.
+      tags:
+      - Tracks
+      parameters:
+      - name: icao24
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Unique ICAO 24-bit address of the transponder in lower-case hex string representation (e.g. 3c6444).
+      - name: time
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Unix timestamp within the time window of the flight to retrieve. Set to 0 for the live track of the aircraft.
+      responses:
+        '200':
+          description: Successful response with the aircraft track.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackResponse'
+        '400':
+          description: Bad request. Invalid parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No track found for the given aircraft and time.
+          content: {}
+        '429':
+          description: Too many requests. Credit limit exhausted.
+          headers:
+            X-Rate-Limit-Retry-After-Seconds:
+              schema:
+                type: integer
+              description: Number of seconds to wait before retrying.
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+    TrackResponse:
+      type: object
+      description: A track representing the path of an aircraft over time.
+      properties:
+        icao24:
+          type: string
+          description: Unique ICAO 24-bit address of the transponder in hex string representation.
+          example: 3c6444
+        startTime:
+          type: integer
+          description: Time of the first waypoint in Unix time (seconds since epoch).
+          example: 1517220000
+        endTime:
+          type: integer
+          description: Time of the last waypoint in Unix time (seconds since epoch).
+          example: 1517223600
+        callsign:
+          type: string
+          nullable: true
+          description: Callsign of the aircraft. Can be null.
+          example: 'DLH400 '
+        path:
+          type: array
+          description: 'Array of waypoints. Each waypoint is an array with 6 fields: [time, latitude, longitude, baro_altitude, true_track, on_ground].'
+          items:
+            type: array
+            description: A waypoint with 6 indexed fields.
+            items: {}
+            prefixItems:
+            - type: integer
+              description: Unix timestamp of the waypoint.
+            - type: number
+              format: float
+              nullable: true
+              description: WGS-84 latitude in decimal degrees.
+            - type: number
+              format: float
+              nullable: true
+              description: WGS-84 longitude in decimal degrees.
+            - type: number
+              format: float
+              nullable: true
+              description: Barometric altitude in meters.
+            - type: number
+              format: float
+              nullable: true
+              description: True track in decimal degrees clockwise from north.
+            - type: boolean
+              description: Boolean indicating if the aircraft is on the ground.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 client credentials Bearer token obtained from https://auth.opensky-network.org/auth/realms/opensky-network/protocol/openid-connect/token. Tokens expire after 30 minutes.
+externalDocs:
+  description: OpenSky Network REST API Documentation
+  url: https://openskynetwork.github.io/opensky-api/rest.html

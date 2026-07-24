@@ -1,0 +1,297 @@
+openapi: 3.1.0
+info:
+  title: OpenSky Network REST Flights State Vectors API
+  description: REST API for retrieving real-time and historical ADS-B aircraft state vectors, flight tracks, and airport arrival and departure data from the OpenSky Network crowd-sourced receiver network. Intended for non-commercial research and educational use.
+  version: 1.0.0
+  termsOfService: https://opensky-network.org/about/terms-of-use
+  contact:
+    name: OpenSky Network
+    email: contact@opensky-network.org
+    url: https://opensky-network.org/about/contact
+  license:
+    name: OpenSky Network Terms of Use
+    url: https://opensky-network.org/about/terms-of-use
+servers:
+- url: https://opensky-network.org/api
+  description: OpenSky Network REST API
+security:
+- {}
+- bearerAuth: []
+tags:
+- name: State Vectors
+  description: Endpoints for retrieving real-time and historical aircraft state vectors (position, velocity, altitude, etc.).
+paths:
+  /states/all:
+    get:
+      operationId: getStateVectorsAll
+      summary: Get all state vectors
+      description: Retrieve any state vector of the OpenSky Network. Returns state vectors for all aircraft currently tracked. Rate limits apply (see rate limiting documentation). Anonymous users receive 10-second resolution; authenticated users receive 5-second resolution.
+      tags:
+      - State Vectors
+      parameters:
+      - name: time
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: The time in seconds since epoch (Unix timestamp) to retrieve state vectors for. Current time is used if omitted.
+      - name: icao24
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        style: form
+        explode: true
+        description: One or more ICAO24 transponder addresses represented by a hex string (e.g. abc9f3). To filter multiple aircraft, repeat this parameter.
+      - name: lamin
+        in: query
+        required: false
+        schema:
+          type: number
+          format: float
+          minimum: -90
+          maximum: 90
+        description: Lower bound for the latitude in decimal degrees of the bounding box.
+      - name: lomin
+        in: query
+        required: false
+        schema:
+          type: number
+          format: float
+          minimum: -180
+          maximum: 180
+        description: Lower bound for the longitude in decimal degrees of the bounding box.
+      - name: lamax
+        in: query
+        required: false
+        schema:
+          type: number
+          format: float
+          minimum: -90
+          maximum: 90
+        description: Upper bound for the latitude in decimal degrees of the bounding box.
+      - name: lomax
+        in: query
+        required: false
+        schema:
+          type: number
+          format: float
+          minimum: -180
+          maximum: 180
+        description: Upper bound for the longitude in decimal degrees of the bounding box.
+      - name: extended
+        in: query
+        required: false
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+        description: Set to 1 to request the extended state vector format which includes aircraft category (index 17).
+      responses:
+        '200':
+          description: Successful response with state vectors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StateVectorResponse'
+              examples:
+                switzerlandBoundingBox:
+                  summary: State vectors over Switzerland
+                  value:
+                    time: 1458564121
+                    states:
+                    - - 3c6444
+                      - 'DLH400  '
+                      - Germany
+                      - 1458564120
+                      - 1458564121
+                      - 8.5432
+                      - 47.2231
+                      - 9144.0
+                      - false
+                      - 251.2
+                      - 87.5
+                      - 0.0
+                      - null
+                      - 9448.8
+                      - '1000'
+                      - false
+                      - 0
+        '400':
+          description: Bad request. Historical queries may exceed the allowed time range.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized. The Bearer token has expired. Request a new token and retry.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Too many requests. Credit limit exhausted.
+          headers:
+            X-Rate-Limit-Retry-After-Seconds:
+              schema:
+                type: integer
+              description: Number of seconds to wait before retrying.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /states/own:
+    get:
+      operationId: getOwnStateVectors
+      summary: Get own state vectors
+      description: Retrieve state vectors for your own sensors. This endpoint requires authentication and is not rate limited for your own receivers. Returns state vectors from sensors you operate.
+      tags:
+      - State Vectors
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: time
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: The time in seconds since epoch (Unix timestamp) to retrieve state vectors for. Current time is used if omitted.
+      - name: icao24
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        style: form
+        explode: true
+        description: One or more ICAO24 transponder addresses represented by a hex string. To filter multiple aircraft, repeat this parameter.
+      - name: serials
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+        style: form
+        explode: true
+        description: Receiver serial numbers to filter results. To filter for multiple receivers, repeat this parameter.
+      responses:
+        '200':
+          description: Successful response with own state vectors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StateVectorResponse'
+        '401':
+          description: Unauthorized. Authentication is required for this endpoint.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden. Unauthenticated access to /states/own is not permitted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    StateVectorResponse:
+      type: object
+      description: Response containing a collection of state vectors representing the current state of aircraft.
+      properties:
+        time:
+          type: integer
+          description: The time which the state vectors in this response are associated with. All vectors represent the state of a vehicle with the interval [time-1, time].
+          example: 1458564121
+        states:
+          type: array
+          nullable: true
+          description: The state vectors as a two-dimensional array. Each row represents a state vector with 18 indexed fields.
+          items:
+            type: array
+            description: A single state vector with 18 fields indexed 0-17.
+            items: {}
+            prefixItems:
+            - type: string
+              description: 'icao24: Unique ICAO 24-bit address of the transponder in hex string representation. All letters are lower case.'
+            - type: string
+              nullable: true
+              description: 'callsign: Callsign of the vehicle (8 chars). Can be null if no callsign has been received.'
+            - type: string
+              description: 'origin_country: Country name inferred from the ICAO 24-bit address.'
+            - type: integer
+              nullable: true
+              description: 'time_position: Unix timestamp (seconds) for the last position update. Can be null if no position report was received within the past 15s.'
+            - type: integer
+              description: 'last_contact: Unix timestamp (seconds) for the last update in general.'
+            - type: number
+              format: float
+              nullable: true
+              description: 'longitude: WGS-84 longitude in decimal degrees. Can be null.'
+            - type: number
+              format: float
+              nullable: true
+              description: 'latitude: WGS-84 latitude in decimal degrees. Can be null.'
+            - type: number
+              format: float
+              nullable: true
+              description: 'baro_altitude: Barometric altitude in meters. Can be null.'
+            - type: boolean
+              description: 'on_ground: Boolean value which indicates if the position was retrieved from a surface position report.'
+            - type: number
+              format: float
+              nullable: true
+              description: 'velocity: Velocity over ground in m/s. Can be null.'
+            - type: number
+              format: float
+              nullable: true
+              description: 'true_track: True track in decimal degrees clockwise from north (north=0 degrees). Can be null.'
+            - type: number
+              format: float
+              nullable: true
+              description: 'vertical_rate: Vertical rate in m/s. Positive indicates climbing, negative indicates descending. Can be null.'
+            - type: array
+              items:
+                type: integer
+              nullable: true
+              description: 'sensors: IDs of the receivers which contributed to this state vector. Is null if no filtering for sensor was used in the request.'
+            - type: number
+              format: float
+              nullable: true
+              description: 'geo_altitude: Geometric altitude in meters. Can be null.'
+            - type: string
+              nullable: true
+              description: 'squawk: The transponder code aka Squawk. Can be null.'
+            - type: boolean
+              description: 'spi: Whether flight status indicates special purpose indicator.'
+            - type: integer
+              description: 'position_source: Origin of this state''s position. 0=ADS-B, 1=ASTERIX, 2=MLAT, 3=FLARM.'
+              enum:
+              - 0
+              - 1
+              - 2
+              - 3
+            - type: integer
+              description: 'category: Aircraft category. 0=No information, 1=No ADS-B Emitter Category Info, 2=Light (<15500 lbs), 3=Small (15500-75000 lbs), 4=Large (75000-300000 lbs), 5=High Vortex Large, 6=Heavy (>300000 lbs), 7=High Performance, 8=Rotorcraft, 9=Glider/sailplane, 10=Lighter-than-air, 11=Parachutist/Skydiver, 12=Ultralight/hang-glider, 13=Reserved, 14=UAV, 15=Space vehicle, 16=Surface Emergency, 17=Surface Service, 18=Point Obstacle, 19=Cluster Obstacle, 20=Line Obstacle.'
+              minimum: 0
+              maximum: 20
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 client credentials Bearer token obtained from https://auth.opensky-network.org/auth/realms/opensky-network/protocol/openid-connect/token. Tokens expire after 30 minutes.
+externalDocs:
+  description: OpenSky Network REST API Documentation
+  url: https://openskynetwork.github.io/opensky-api/rest.html
