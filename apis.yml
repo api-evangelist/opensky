@@ -1,6 +1,19 @@
 name: OpenSky Network
 description: Open-source flight tracking network with a REST API for accessing real-time and historical ADS-B aircraft state vectors, flight tracks, and airport arrivals and departures. The network is powered by a community of volunteer ADS-B receiver operators and is intended for non-commercial research and educational use.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/opensky.png
 url: https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -14,57 +27,97 @@ tags:
   - Real-Time
   - Historical Data
 apis:
-  - name: OpenSky Network REST API
-    description: REST API for retrieving real-time and historical ADS-B aircraft state vectors, flight tracks, and airport arrival and departure data from the OpenSky Network crowd-sourced receiver network.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://openskynetwork.github.io/opensky-api/rest.html
-    baseURL: https://opensky-network.org/api
-    tags:
-      - Aircraft State Vectors
-      - Flight Tracks
-      - Airport Arrivals
-      - Airport Departures
-      - ADS-B
-    properties:
-      - type: Documentation
-        url: https://openskynetwork.github.io/opensky-api/rest.html
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/openapi/opensky-rest-api.json
-      - type: Authentication
-        url: https://openskynetwork.github.io/opensky-api/rest.html#authentication
-      - type: RateLimits
-        url: https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/rate-limits/opensky-rest-api.yml
-      - type: Plans
-        url: https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/plans/opensky-rest-api.yml
-    contact:
-      - FN: OpenSky Network
-        email: contact@opensky-network.org
-        url: https://opensky-network.org/about/contact
-
-  - name: OpenSky Network Trino Historical Data API
-    description: SQL query interface powered by Trino for accessing the full OpenSky historical dataset including state vectors, raw Mode S messages, ADS-C and MLAT data, and flight records. Available to university-affiliated researchers, governmental organisations, and aviation authorities.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://openskynetwork.github.io/opensky-api/trino.html
-    baseURL: https://trino.opensky-network.org
-    tags:
-      - Historical Data
-      - State Vectors
-      - Mode S
-      - ADS-C
-      - MLAT
-      - SQL
-    properties:
-      - type: Documentation
-        url: https://openskynetwork.github.io/opensky-api/trino.html
-      - type: RateLimits
-        url: https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/rate-limits/opensky-trino-api.yml
-      - type: Plans
-        url: https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/plans/opensky-trino-api.yml
-    contact:
-      - FN: OpenSky Network
-        email: contact@opensky-network.org
-        url: https://opensky-network.org/about/contact
-
+- name: OpenSky Network Trino Historical Data API
+  description: >-
+    SQL query interface powered by Trino for accessing the full OpenSky historical dataset including state
+    vectors, raw Mode S messages, ADS-C and MLAT data, and flight records. Available to university-affiliated
+    researchers, governmental organisations, and aviation authorities.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://openskynetwork.github.io/opensky-api/trino.html
+  baseURL: https://trino.opensky-network.org
+  tags:
+  - Historical Data
+  - State Vectors
+  - Mode S
+  - ADS-C
+  - MLAT
+  - SQL
+  properties:
+  - type: Documentation
+    url: https://openskynetwork.github.io/opensky-api/trino.html
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/rate-limits/opensky-trino-api.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/plans/opensky-trino-api.yml
+  contact:
+  - FN: OpenSky Network
+    email: contact@opensky-network.org
+    url: https://opensky-network.org/about/contact
+- aid: opensky:opensky-flights-api
+  name: OpenSky Network Flights API
+  description: >-
+    Endpoints for retrieving flight records including arrivals, departures, and flights by aircraft.
+  humanURL: https://openskynetwork.github.io/opensky-api/rest.html
+  baseURL: https://opensky-network.org/api
+  tags:
+  - Flights
+  properties:
+  - type: OpenAPI
+    url: openapi/opensky-flights-api-openapi.yml
+  - type: Documentation
+    url: https://openskynetwork.github.io/opensky-api/rest.html
+  - type: Authentication
+    url: https://openskynetwork.github.io/opensky-api/rest.html#authentication
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/rate-limits/opensky-rest-api.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/plans/opensky-rest-api.yml
+- aid: opensky:opensky-state-vectors-api
+  name: OpenSky Network State Vectors API
+  description: >-
+    Endpoints for retrieving real-time and historical aircraft state vectors (position, velocity, altitude,
+    etc.).
+  humanURL: https://openskynetwork.github.io/opensky-api/rest.html
+  baseURL: https://opensky-network.org/api
+  tags:
+  - State Vectors
+  properties:
+  - type: OpenAPI
+    url: openapi/opensky-state-vectors-api-openapi.yml
+  - type: Documentation
+    url: https://openskynetwork.github.io/opensky-api/rest.html
+  - type: Authentication
+    url: https://openskynetwork.github.io/opensky-api/rest.html#authentication
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/rate-limits/opensky-rest-api.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/plans/opensky-rest-api.yml
+- aid: opensky:opensky-tracks-api
+  name: OpenSky Network Tracks API
+  description: Endpoints for retrieving aircraft trajectory tracks with detailed waypoint data.
+  humanURL: https://openskynetwork.github.io/opensky-api/rest.html
+  baseURL: https://opensky-network.org/api
+  tags:
+  - Tracks
+  properties:
+  - type: OpenAPI
+    url: openapi/opensky-tracks-api-openapi.yml
+  - type: Documentation
+    url: https://openskynetwork.github.io/opensky-api/rest.html
+  - type: Authentication
+    url: https://openskynetwork.github.io/opensky-api/rest.html#authentication
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/rate-limits/opensky-rest-api.yml
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/plans/opensky-rest-api.yml
 common:
   - type: AgenticAccess
     url: agentic-access/opensky-agentic-access.yml
