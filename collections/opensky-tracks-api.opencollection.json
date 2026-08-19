@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenSky Network REST Flights Tracks API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tracks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get track by aircraft",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://opensky-network.org/api/tracks",
+            "params": [
+              {
+                "name": "icao24",
+                "value": "",
+                "type": "query",
+                "description": "Unique ICAO 24-bit address of the transponder in lower-case hex string representation (e.g. 3c6444)."
+              },
+              {
+                "name": "time",
+                "value": "",
+                "type": "query",
+                "description": "Unix timestamp within the time window of the flight to retrieve. Set to 0 for the live track of the aircraft."
+              }
+            ]
+          },
+          "docs": "Retrieve the trajectory for a certain aircraft at a given time. The track is a list of waypoints containing position, altitude, and velocity information. Set time to 0 to get the live track."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

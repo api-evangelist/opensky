@@ -1,0 +1,672 @@
+{
+  "item": [
+    {
+      "id": "4fdcda78-b0fb-425c-a1a1-cb452a021efd",
+      "name": "State Vectors",
+      "description": {
+        "content": "Endpoints for retrieving real-time and historical aircraft state vectors (position, velocity, altitude, etc.).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "91670eb2-19a8-4462-81bf-2ae4ab7ce2d9",
+          "name": "Get all state vectors",
+          "request": {
+            "name": "Get all state vectors",
+            "description": {
+              "content": "Retrieve any state vector of the OpenSky Network. Returns state vectors for all aircraft currently tracked. Rate limits apply (see rate limiting documentation). Anonymous users receive 10-second resolution; authenticated users receive 5-second resolution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "states",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "time",
+                  "value": "<integer>",
+                  "description": "The time in seconds since epoch (Unix timestamp) to retrieve state vectors for. Current time is used if omitted."
+                },
+                {
+                  "disabled": false,
+                  "key": "icao24",
+                  "value": "<string>",
+                  "description": "One or more ICAO24 transponder addresses represented by a hex string (e.g. abc9f3). To filter multiple aircraft, repeat this parameter."
+                },
+                {
+                  "disabled": false,
+                  "key": "icao24",
+                  "value": "<string>",
+                  "description": "One or more ICAO24 transponder addresses represented by a hex string (e.g. abc9f3). To filter multiple aircraft, repeat this parameter."
+                },
+                {
+                  "disabled": false,
+                  "key": "lamin",
+                  "value": "<float>",
+                  "description": "Lower bound for the latitude in decimal degrees of the bounding box."
+                },
+                {
+                  "disabled": false,
+                  "key": "lomin",
+                  "value": "<float>",
+                  "description": "Lower bound for the longitude in decimal degrees of the bounding box."
+                },
+                {
+                  "disabled": false,
+                  "key": "lamax",
+                  "value": "<float>",
+                  "description": "Upper bound for the latitude in decimal degrees of the bounding box."
+                },
+                {
+                  "disabled": false,
+                  "key": "lomax",
+                  "value": "<float>",
+                  "description": "Upper bound for the longitude in decimal degrees of the bounding box."
+                },
+                {
+                  "disabled": false,
+                  "key": "extended",
+                  "value": "<integer>",
+                  "description": "Set to 1 to request the extended state vector format which includes aircraft category (index 17)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f8348d06-85cc-40bf-b704-1c41d110d2ba",
+              "name": "Successful response with state vectors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "states",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lamin",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "lomin",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "lamax",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "lomax",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "extended",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"time\": 1458564121,\n  \"states\": [\n    [\n      \"3c6444\",\n      \"DLH400  \",\n      \"Germany\",\n      1458564120,\n      1458564121,\n      8.5432,\n      47.2231,\n      9144,\n      false,\n      251.2,\n      87.5,\n      0,\n      null,\n      9448.8,\n      \"1000\",\n      false,\n      0\n    ]\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63bae4bc-e76a-4bc1-9880-14c661eed158",
+              "name": "Bad request. Historical queries may exceed the allowed time range.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "states",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lamin",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "lomin",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "lamax",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "lomax",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "extended",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09096eb1-f55e-41d8-a3b1-0028e8866a32",
+              "name": "Unauthorized. The Bearer token has expired. Request a new token and retry.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "states",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lamin",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "lomin",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "lamax",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "lomax",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "extended",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cce32adc-08cd-419a-b9c3-9e9a9c1949f0",
+              "name": "Too many requests. Credit limit exhausted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "states",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lamin",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "lomin",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "lamax",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "lomax",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "extended",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of seconds to wait before retrying.",
+                  "key": "X-Rate-Limit-Retry-After-Seconds",
+                  "value": "3282"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a60297f-68a4-469b-be1a-979b8acb273a",
+          "name": "Get own state vectors",
+          "request": {
+            "name": "Get own state vectors",
+            "description": {
+              "content": "Retrieve state vectors for your own sensors. This endpoint requires authentication and is not rate limited for your own receivers. Returns state vectors from sensors you operate.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "states",
+                "own"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "time",
+                  "value": "<integer>",
+                  "description": "The time in seconds since epoch (Unix timestamp) to retrieve state vectors for. Current time is used if omitted."
+                },
+                {
+                  "disabled": false,
+                  "key": "icao24",
+                  "value": "<string>",
+                  "description": "One or more ICAO24 transponder addresses represented by a hex string. To filter multiple aircraft, repeat this parameter."
+                },
+                {
+                  "disabled": false,
+                  "key": "icao24",
+                  "value": "<string>",
+                  "description": "One or more ICAO24 transponder addresses represented by a hex string. To filter multiple aircraft, repeat this parameter."
+                },
+                {
+                  "disabled": false,
+                  "key": "serials",
+                  "value": "<integer>",
+                  "description": "Receiver serial numbers to filter results. To filter for multiple receivers, repeat this parameter."
+                },
+                {
+                  "disabled": false,
+                  "key": "serials",
+                  "value": "<integer>",
+                  "description": "Receiver serial numbers to filter results. To filter for multiple receivers, repeat this parameter."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0d7e108d-e18b-4fae-a33e-ecc0baa807df",
+              "name": "Successful response with own state vectors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "states",
+                    "own"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "serials",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "serials",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"time\": 1458564121,\n  \"states\": [\n    [],\n    []\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e3df3d4-814c-4b3a-af89-08965986a9ea",
+              "name": "Unauthorized. Authentication is required for this endpoint.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "states",
+                    "own"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "serials",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "serials",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3689747-12bf-4b68-be72-3a9459a3778e",
+              "name": "Forbidden. Unauthenticated access to /states/own is not permitted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "states",
+                    "own"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "serials",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "serials",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://opensky-network.org/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "12471b15-a877-49af-ad1c-983376bfd781",
+    "name": "OpenSky Network REST Flights State Vectors API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for retrieving real-time and historical ADS-B aircraft state vectors, flight tracks, and airport arrival and departure data from the OpenSky Network crowd-sourced receiver network. Intended for non-commercial research and educational use.\n\nContact Support:\n Name: OpenSky Network\n Email: contact@opensky-network.org",
+      "type": "text/plain"
+    }
+  }
+}

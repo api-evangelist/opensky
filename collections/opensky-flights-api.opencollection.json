@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenSky Network REST Flights API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Flights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get flights in time interval",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://opensky-network.org/api/flights/all",
+            "params": [
+              {
+                "name": "begin",
+                "value": "",
+                "type": "query",
+                "description": "Start of time interval to retrieve flights for as Unix time (seconds since epoch)."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End of time interval to retrieve flights for as Unix time (seconds since epoch). Must be within 2 hours of begin."
+              }
+            ]
+          },
+          "docs": "Retrieve flights for a given time interval. The time interval must not exceed 2 hours. Returns all flights that were seen within the time interval."
+        },
+        {
+          "info": {
+            "name": "Get flights by aircraft",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://opensky-network.org/api/flights/aircraft",
+            "params": [
+              {
+                "name": "icao24",
+                "value": "",
+                "type": "query",
+                "description": "Unique ICAO 24-bit address of the transponder in lower-case hex string representation (e.g. 3c6444)."
+              },
+              {
+                "name": "begin",
+                "value": "",
+                "type": "query",
+                "description": "Start of time interval to retrieve flights for as Unix time (seconds since epoch)."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End of time interval to retrieve flights for as Unix time (seconds since epoch). Must be within 2 days of begin."
+              }
+            ]
+          },
+          "docs": "Retrieve flights for a particular aircraft within a given time interval. The time interval must not exceed 2 days. Returns all flights for the specified aircraft in the given time range."
+        },
+        {
+          "info": {
+            "name": "Get arrivals by airport",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://opensky-network.org/api/flights/arrival",
+            "params": [
+              {
+                "name": "airport",
+                "value": "",
+                "type": "query",
+                "description": "ICAO identifier for the airport (e.g. EDDF for Frankfurt Airport)."
+              },
+              {
+                "name": "begin",
+                "value": "",
+                "type": "query",
+                "description": "Start of time interval to retrieve flights for as Unix time (seconds since epoch)."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End of time interval to retrieve flights for as Unix time (seconds since epoch). Must be within 2 days of begin."
+              }
+            ]
+          },
+          "docs": "Retrieve flights arriving at a specific airport within a given time interval. The time interval must not exceed 2 days. Returns all flights that arrived at the specified airport in the given time range."
+        },
+        {
+          "info": {
+            "name": "Get departures by airport",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://opensky-network.org/api/flights/departure",
+            "params": [
+              {
+                "name": "airport",
+                "value": "",
+                "type": "query",
+                "description": "ICAO identifier for the airport (typically uppercase, e.g. EDDF for Frankfurt Airport)."
+              },
+              {
+                "name": "begin",
+                "value": "",
+                "type": "query",
+                "description": "Start of time interval to retrieve flights for as Unix time (seconds since epoch)."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End of time interval to retrieve flights for as Unix time (seconds since epoch)."
+              }
+            ]
+          },
+          "docs": "Retrieve flights departing from a specific airport within a given time interval. The time interval should cover more than 2 days of UTC boundaries for best results. Returns all flights that departed from the specified airport in the given time range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

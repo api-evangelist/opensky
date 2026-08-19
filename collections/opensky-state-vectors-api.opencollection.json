@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenSky Network REST Flights State Vectors API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "State Vectors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all state vectors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://opensky-network.org/api/states/all",
+            "params": [
+              {
+                "name": "time",
+                "value": "",
+                "type": "query",
+                "description": "The time in seconds since epoch (Unix timestamp) to retrieve state vectors for. Current time is used if omitted."
+              },
+              {
+                "name": "icao24",
+                "value": "",
+                "type": "query",
+                "description": "One or more ICAO24 transponder addresses represented by a hex string (e.g. abc9f3). To filter multiple aircraft, repeat this parameter."
+              },
+              {
+                "name": "lamin",
+                "value": "",
+                "type": "query",
+                "description": "Lower bound for the latitude in decimal degrees of the bounding box."
+              },
+              {
+                "name": "lomin",
+                "value": "",
+                "type": "query",
+                "description": "Lower bound for the longitude in decimal degrees of the bounding box."
+              },
+              {
+                "name": "lamax",
+                "value": "",
+                "type": "query",
+                "description": "Upper bound for the latitude in decimal degrees of the bounding box."
+              },
+              {
+                "name": "lomax",
+                "value": "",
+                "type": "query",
+                "description": "Upper bound for the longitude in decimal degrees of the bounding box."
+              },
+              {
+                "name": "extended",
+                "value": "",
+                "type": "query",
+                "description": "Set to 1 to request the extended state vector format which includes aircraft category (index 17)."
+              }
+            ]
+          },
+          "docs": "Retrieve any state vector of the OpenSky Network. Returns state vectors for all aircraft currently tracked. Rate limits apply (see rate limiting documentation). Anonymous users receive 10-second resolution; authenticated users receive 5-second resolution."
+        },
+        {
+          "info": {
+            "name": "Get own state vectors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://opensky-network.org/api/states/own",
+            "params": [
+              {
+                "name": "time",
+                "value": "",
+                "type": "query",
+                "description": "The time in seconds since epoch (Unix timestamp) to retrieve state vectors for. Current time is used if omitted."
+              },
+              {
+                "name": "icao24",
+                "value": "",
+                "type": "query",
+                "description": "One or more ICAO24 transponder addresses represented by a hex string. To filter multiple aircraft, repeat this parameter."
+              },
+              {
+                "name": "serials",
+                "value": "",
+                "type": "query",
+                "description": "Receiver serial numbers to filter results. To filter for multiple receivers, repeat this parameter."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve state vectors for your own sensors. This endpoint requires authentication and is not rate limited for your own receivers. Returns state vectors from sensors you operate."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

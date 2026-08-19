@@ -1,0 +1,253 @@
+{
+  "item": [
+    {
+      "id": "1ee46606-45fa-4b51-9fff-969700882c59",
+      "name": "Tracks",
+      "description": {
+        "content": "Endpoints for retrieving aircraft trajectory tracks with detailed waypoint data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "300bf52f-cb03-46c8-81fa-70d41c7380a4",
+          "name": "Get track by aircraft",
+          "request": {
+            "name": "Get track by aircraft",
+            "description": {
+              "content": "Retrieve the trajectory for a certain aircraft at a given time. The track is a list of waypoints containing position, altitude, and velocity information. Set time to 0 to get the live track.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tracks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "icao24",
+                  "value": "<string>",
+                  "description": "(Required) Unique ICAO 24-bit address of the transponder in lower-case hex string representation (e.g. 3c6444)."
+                },
+                {
+                  "disabled": false,
+                  "key": "time",
+                  "value": "<integer>",
+                  "description": "Unix timestamp within the time window of the flight to retrieve. Set to 0 for the live track of the aircraft."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "491e6980-e66e-4223-ac29-877e05a5e86c",
+              "name": "Successful response with the aircraft track.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tracks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"icao24\": \"3c6444\",\n  \"startTime\": 1517220000,\n  \"endTime\": 1517223600,\n  \"callsign\": \"DLH400 \",\n  \"path\": [\n    [],\n    []\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "614e0c60-6ff6-43d8-ade4-c3ef73818aec",
+              "name": "Bad request. Invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tracks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27f54b26-5f27-4d08-9b9f-2b7098f3011e",
+              "name": "No track found for the given aircraft and time.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tracks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d265b460-0d18-45ec-84e3-4df5ad254a66",
+              "name": "Too many requests. Credit limit exhausted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tracks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of seconds to wait before retrying.",
+                  "key": "X-Rate-Limit-Retry-After-Seconds",
+                  "value": "9807"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://opensky-network.org/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "7c9ffd7d-e24d-4a83-abe8-b16a863c23ee",
+    "name": "OpenSky Network REST Flights Tracks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for retrieving real-time and historical ADS-B aircraft state vectors, flight tracks, and airport arrival and departure data from the OpenSky Network crowd-sourced receiver network. Intended for non-commercial research and educational use.\n\nContact Support:\n Name: OpenSky Network\n Email: contact@opensky-network.org",
+      "type": "text/plain"
+    }
+  }
+}

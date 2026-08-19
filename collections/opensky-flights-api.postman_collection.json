@@ -1,0 +1,993 @@
+{
+  "item": [
+    {
+      "id": "bc1fa124-ba0e-4014-8508-ab9fed062fae",
+      "name": "Flights",
+      "description": {
+        "content": "Endpoints for retrieving flight records including arrivals, departures, and flights by aircraft.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a6843aae-33b3-46c4-82c3-f77dcf790e1c",
+          "name": "Get flights in time interval",
+          "request": {
+            "name": "Get flights in time interval",
+            "description": {
+              "content": "Retrieve flights for a given time interval. The time interval must not exceed 2 hours. Returns all flights that were seen within the time interval.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "flights",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "begin",
+                  "value": "<integer>",
+                  "description": "(Required) Start of time interval to retrieve flights for as Unix time (seconds since epoch)."
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<integer>",
+                  "description": "(Required) End of time interval to retrieve flights for as Unix time (seconds since epoch). Must be within 2 hours of begin."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "43eeec7e-a71c-4cd4-b856-6c51634374ab",
+              "name": "Successful response with an array of flights.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flights",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "begin",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"icao24\": \"3c6444\",\n    \"firstSeen\": 1517220000,\n    \"estDepartureAirport\": \"EDDF\",\n    \"lastSeen\": 1517223600,\n    \"estArrivalAirport\": \"EGLL\",\n    \"callsign\": \"DLH400 \",\n    \"estDepartureAirportHorizDistance\": 1250,\n    \"estDepartureAirportVertDistance\": 304,\n    \"estArrivalAirportHorizDistance\": 1800,\n    \"estArrivalAirportVertDistance\": 152,\n    \"departureAirportCandidatesCount\": 0,\n    \"arrivalAirportCandidatesCount\": 1\n  },\n  {\n    \"icao24\": \"3c6444\",\n    \"firstSeen\": 1517220000,\n    \"estDepartureAirport\": \"EDDF\",\n    \"lastSeen\": 1517223600,\n    \"estArrivalAirport\": \"EGLL\",\n    \"callsign\": \"DLH400 \",\n    \"estDepartureAirportHorizDistance\": 1250,\n    \"estDepartureAirportVertDistance\": 304,\n    \"estArrivalAirportHorizDistance\": 1800,\n    \"estArrivalAirportVertDistance\": 152,\n    \"departureAirportCandidatesCount\": 0,\n    \"arrivalAirportCandidatesCount\": 1\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58aa4d0d-216f-499c-ab34-061a92423e95",
+              "name": "Bad request. The time interval may exceed the 2-hour maximum.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flights",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "begin",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f4c41f4-b558-4bea-a8b7-b9f71a9ac6cf",
+              "name": "No flights found for the given time interval.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flights",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "begin",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "62622cab-f747-4f8f-836e-2e4cced9c4c7",
+              "name": "Too many requests. Credit limit exhausted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flights",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "begin",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of seconds to wait before retrying.",
+                  "key": "X-Rate-Limit-Retry-After-Seconds",
+                  "value": "8551"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "551b826c-bc4a-4b88-993a-be6c6d0d1252",
+          "name": "Get flights by aircraft",
+          "request": {
+            "name": "Get flights by aircraft",
+            "description": {
+              "content": "Retrieve flights for a particular aircraft within a given time interval. The time interval must not exceed 2 days. Returns all flights for the specified aircraft in the given time range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "flights",
+                "aircraft"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "icao24",
+                  "value": "<string>",
+                  "description": "(Required) Unique ICAO 24-bit address of the transponder in lower-case hex string representation (e.g. 3c6444)."
+                },
+                {
+                  "disabled": false,
+                  "key": "begin",
+                  "value": "<integer>",
+                  "description": "(Required) Start of time interval to retrieve flights for as Unix time (seconds since epoch)."
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<integer>",
+                  "description": "(Required) End of time interval to retrieve flights for as Unix time (seconds since epoch). Must be within 2 days of begin."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d3e1bf9f-c70d-486a-98c0-05460ebc2cf0",
+              "name": "Successful response with an array of flights for the specified aircraft.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flights",
+                    "aircraft"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "begin",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"icao24\": \"3c6444\",\n    \"firstSeen\": 1517220000,\n    \"estDepartureAirport\": \"EDDF\",\n    \"lastSeen\": 1517223600,\n    \"estArrivalAirport\": \"EGLL\",\n    \"callsign\": \"DLH400 \",\n    \"estDepartureAirportHorizDistance\": 1250,\n    \"estDepartureAirportVertDistance\": 304,\n    \"estArrivalAirportHorizDistance\": 1800,\n    \"estArrivalAirportVertDistance\": 152,\n    \"departureAirportCandidatesCount\": 0,\n    \"arrivalAirportCandidatesCount\": 1\n  },\n  {\n    \"icao24\": \"3c6444\",\n    \"firstSeen\": 1517220000,\n    \"estDepartureAirport\": \"EDDF\",\n    \"lastSeen\": 1517223600,\n    \"estArrivalAirport\": \"EGLL\",\n    \"callsign\": \"DLH400 \",\n    \"estDepartureAirportHorizDistance\": 1250,\n    \"estDepartureAirportVertDistance\": 304,\n    \"estArrivalAirportHorizDistance\": 1800,\n    \"estArrivalAirportVertDistance\": 152,\n    \"departureAirportCandidatesCount\": 0,\n    \"arrivalAirportCandidatesCount\": 1\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65753db6-8cfb-434e-a7f1-a8c11349d1aa",
+              "name": "Bad request. The time interval may exceed the 2-day maximum.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flights",
+                    "aircraft"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "begin",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49e5e2d4-3f67-487f-abe3-435498cf638a",
+              "name": "No flights found for the given aircraft and time interval.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flights",
+                    "aircraft"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "begin",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4e56ce5e-1824-4524-b24b-31276d34923d",
+              "name": "Too many requests. Credit limit exhausted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flights",
+                    "aircraft"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "icao24",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "begin",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of seconds to wait before retrying.",
+                  "key": "X-Rate-Limit-Retry-After-Seconds",
+                  "value": "8551"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a80609e8-2864-4147-92d9-6da58491062b",
+          "name": "Get arrivals by airport",
+          "request": {
+            "name": "Get arrivals by airport",
+            "description": {
+              "content": "Retrieve flights arriving at a specific airport within a given time interval. The time interval must not exceed 2 days. Returns all flights that arrived at the specified airport in the given time range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "flights",
+                "arrival"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "airport",
+                  "value": "<string>",
+                  "description": "(Required) ICAO identifier for the airport (e.g. EDDF for Frankfurt Airport)."
+                },
+                {
+                  "disabled": false,
+                  "key": "begin",
+                  "value": "<integer>",
+                  "description": "(Required) Start of time interval to retrieve flights for as Unix time (seconds since epoch)."
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<integer>",
+                  "description": "(Required) End of time interval to retrieve flights for as Unix time (seconds since epoch). Must be within 2 days of begin."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39a44b75-172a-4146-a801-8b4cb07bdfcc",
+              "name": "Successful response with an array of arrival flights.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flights",
+                    "arrival"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "airport",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "begin",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"icao24\": \"3c6444\",\n    \"firstSeen\": 1517220000,\n    \"estDepartureAirport\": \"EDDF\",\n    \"lastSeen\": 1517223600,\n    \"estArrivalAirport\": \"EGLL\",\n    \"callsign\": \"DLH400 \",\n    \"estDepartureAirportHorizDistance\": 1250,\n    \"estDepartureAirportVertDistance\": 304,\n    \"estArrivalAirportHorizDistance\": 1800,\n    \"estArrivalAirportVertDistance\": 152,\n    \"departureAirportCandidatesCount\": 0,\n    \"arrivalAirportCandidatesCount\": 1\n  },\n  {\n    \"icao24\": \"3c6444\",\n    \"firstSeen\": 1517220000,\n    \"estDepartureAirport\": \"EDDF\",\n    \"lastSeen\": 1517223600,\n    \"estArrivalAirport\": \"EGLL\",\n    \"callsign\": \"DLH400 \",\n    \"estDepartureAirportHorizDistance\": 1250,\n    \"estDepartureAirportVertDistance\": 304,\n    \"estArrivalAirportHorizDistance\": 1800,\n    \"estArrivalAirportVertDistance\": 152,\n    \"departureAirportCandidatesCount\": 0,\n    \"arrivalAirportCandidatesCount\": 1\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80e8afea-eb7e-40f1-ac00-ba173da037ae",
+              "name": "Bad request. The time interval may exceed the 2-day maximum.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flights",
+                    "arrival"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "airport",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "begin",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3962471b-1620-45ad-9bd7-b92ef1042440",
+              "name": "No arrivals found for the given airport and time interval.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flights",
+                    "arrival"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "airport",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "begin",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fc7e7ed3-93c6-40d4-8e0c-a62def69ba3e",
+              "name": "Too many requests. Credit limit exhausted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flights",
+                    "arrival"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "airport",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "begin",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of seconds to wait before retrying.",
+                  "key": "X-Rate-Limit-Retry-After-Seconds",
+                  "value": "8551"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea84e9ef-9c3d-4200-95c0-613be00259f7",
+          "name": "Get departures by airport",
+          "request": {
+            "name": "Get departures by airport",
+            "description": {
+              "content": "Retrieve flights departing from a specific airport within a given time interval. The time interval should cover more than 2 days of UTC boundaries for best results. Returns all flights that departed from the specified airport in the given time range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "flights",
+                "departure"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "airport",
+                  "value": "<string>",
+                  "description": "(Required) ICAO identifier for the airport (typically uppercase, e.g. EDDF for Frankfurt Airport)."
+                },
+                {
+                  "disabled": false,
+                  "key": "begin",
+                  "value": "<integer>",
+                  "description": "(Required) Start of time interval to retrieve flights for as Unix time (seconds since epoch)."
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<integer>",
+                  "description": "(Required) End of time interval to retrieve flights for as Unix time (seconds since epoch)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e7ce4d13-4dd1-4cc0-a454-2db1cbcd3f5a",
+              "name": "Successful response with an array of departure flights.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flights",
+                    "departure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "airport",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "begin",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"icao24\": \"3c6444\",\n    \"firstSeen\": 1517220000,\n    \"estDepartureAirport\": \"EDDF\",\n    \"lastSeen\": 1517223600,\n    \"estArrivalAirport\": \"EGLL\",\n    \"callsign\": \"DLH400 \",\n    \"estDepartureAirportHorizDistance\": 1250,\n    \"estDepartureAirportVertDistance\": 304,\n    \"estArrivalAirportHorizDistance\": 1800,\n    \"estArrivalAirportVertDistance\": 152,\n    \"departureAirportCandidatesCount\": 0,\n    \"arrivalAirportCandidatesCount\": 1\n  },\n  {\n    \"icao24\": \"3c6444\",\n    \"firstSeen\": 1517220000,\n    \"estDepartureAirport\": \"EDDF\",\n    \"lastSeen\": 1517223600,\n    \"estArrivalAirport\": \"EGLL\",\n    \"callsign\": \"DLH400 \",\n    \"estDepartureAirportHorizDistance\": 1250,\n    \"estDepartureAirportVertDistance\": 304,\n    \"estArrivalAirportHorizDistance\": 1800,\n    \"estArrivalAirportVertDistance\": 152,\n    \"departureAirportCandidatesCount\": 0,\n    \"arrivalAirportCandidatesCount\": 1\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a73c5913-25a4-4602-a960-4c3eb2685ff4",
+              "name": "Bad request. Invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flights",
+                    "departure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "airport",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "begin",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11889d1a-a369-42b9-a373-157be50fe2fc",
+              "name": "No departures found for the given airport and time interval.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flights",
+                    "departure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "airport",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "begin",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e86c7014-1b39-4275-b8cc-9c9aed5811b6",
+              "name": "Too many requests. Credit limit exhausted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flights",
+                    "departure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "airport",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "begin",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Number of seconds to wait before retrying.",
+                  "key": "X-Rate-Limit-Retry-After-Seconds",
+                  "value": "8551"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://opensky-network.org/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "2a20c4ef-d2ff-44cd-85db-55c0b6680741",
+    "name": "OpenSky Network REST Flights API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for retrieving real-time and historical ADS-B aircraft state vectors, flight tracks, and airport arrival and departure data from the OpenSky Network crowd-sourced receiver network. Intended for non-commercial research and educational use.\n\nContact Support:\n Name: OpenSky Network\n Email: contact@opensky-network.org",
+      "type": "text/plain"
+    }
+  }
+}
