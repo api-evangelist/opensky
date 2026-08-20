@@ -38,6 +38,13 @@ apis:
   tags:
   - Historical Data
   - State Vectors
+  - Modes
+  - ADS-C
+  - MLAT
+  - SQL
+  tags_raw:
+  - Historical Data
+  - State Vectors
   - Mode S
   - ADS-C
   - MLAT
