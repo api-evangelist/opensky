@@ -1,5 +1,19 @@
 name: OpenSky Network
 description: Open-source flight tracking network with a REST API for accessing real-time and historical ADS-B aircraft state vectors, flight tracks, and airport arrivals and departures. The network is powered by a community of volunteer ADS-B receiver operators and is intended for non-commercial research and educational use.
+deliveryModel:
+  model: open-core
+  license: GPL-3.0
+  open_source: true
+  commercial: true
+  callable_host: true
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -126,6 +140,8 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/plans/opensky-rest-api.yml
 common:
+  - type: IssueTracker
+    url: https://github.com/openskynetwork/opensky-api/issues
   - type: License
     name: GPL-3.0
     url: https://github.com/openskynetwork/opensky-api/blob/master/LICENSE
