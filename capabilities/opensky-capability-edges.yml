@@ -1,0 +1,34 @@
+slug: opensky
+provider: OpenSky Network
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Air Traffic Control
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: State Vectors
+  spec_file: opensky-state-vectors-api-openapi.yml
+  capability_id: BC-1240.40
+  capability_id_l1: BC-1240
+  capability_name: Surveillance Systems Management
+  confidence: 0.75
+  evidence: GET /states/all  getStateVectorsAll  Get all state vectors — 'real-time and historical ADS-B
+    aircraft state vectors'
+  reason: ADS-B state vectors are raw surveillance observations of aircraft position/velocity, directly
+    matching Surveillance Systems Management (ADS-B, multilateration).
+- tag: Tracks
+  spec_file: opensky-tracks-api-openapi.yml
+  capability_id: BC-1240.40
+  capability_id_l1: BC-1240
+  capability_name: Surveillance Systems Management
+  confidence: 0.7
+  evidence: GET /tracks  getTrackByAircraft  Get track by aircraft — 'crowd-sourced receiver network'
+  reason: Returns an aircraft's trajectory assembled from ADS-B receiver observations, i.e. surveillance
+    data provision, not flight planning or flow management.
