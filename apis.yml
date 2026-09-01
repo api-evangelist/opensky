@@ -52,7 +52,7 @@ apis:
   tags:
   - Historical Data
   - State Vectors
-  - Mode S
+  - Modes
   - ADS-C
   - MLAT
   - SQL
