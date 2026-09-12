@@ -141,6 +141,8 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/plans/opensky-rest-api.yml
 common:
+  - type: Website
+    url: https://opensky-network.org/
   - type: CapabilityMap
     url: capabilities/opensky-capability-edges.yml
     name: OpenSky Network Business Capability Map
