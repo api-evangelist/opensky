@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: OpenSky Network REST Flights API
   description: REST API for retrieving real-time and historical ADS-B aircraft state vectors, flight tracks, and airport arrival and departure data from the OpenSky Network crowd-sourced receiver network. Intended for non-commercial research and educational use.
@@ -221,6 +221,12 @@ paths:
               description: Number of seconds to wait before retrying.
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
     FlightObject:
       type: object
       description: A flight record representing a single flight detected by the OpenSky Network.
@@ -280,12 +286,6 @@ components:
           type: integer
           description: Number of other possible arrival airports in short distance to estArrivalAirport.
           example: 1
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
   securitySchemes:
     bearerAuth:
       type: http
