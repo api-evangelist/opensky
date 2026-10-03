@@ -200,12 +200,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
     StateVectorResponse:
       type: object
       description: Response containing a collection of state vectors representing the current state of aircraft.
@@ -286,6 +280,12 @@ components:
               description: 'category: Aircraft category. 0=No information, 1=No ADS-B Emitter Category Info, 2=Light (<15500 lbs), 3=Small (15500-75000 lbs), 4=Large (75000-300000 lbs), 5=High Vortex Large, 6=Heavy (>300000 lbs), 7=High Performance, 8=Rotorcraft, 9=Glider/sailplane, 10=Lighter-than-air, 11=Parachutist/Skydiver, 12=Ultralight/hang-glider, 13=Reserved, 14=UAV, 15=Space vehicle, 16=Surface Emergency, 17=Surface Service, 18=Point Obstacle, 19=Cluster Obstacle, 20=Line Obstacle.'
               minimum: 0
               maximum: 20
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
   securitySchemes:
     bearerAuth:
       type: http
