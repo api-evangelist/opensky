@@ -66,12 +66,6 @@ paths:
               description: Number of seconds to wait before retrying.
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
     TrackResponse:
       type: object
       description: A track representing the path of an aircraft over time.
@@ -121,6 +115,12 @@ components:
               description: True track in decimal degrees clockwise from north.
             - type: boolean
               description: Boolean indicating if the aircraft is on the ground.
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
   securitySchemes:
     bearerAuth:
       type: http
