@@ -141,6 +141,10 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/plans/opensky-rest-api.yml
 common:
+  - type: Plans
+    url: plans/opensky-rest-api.yml
+  - type: RateLimits
+    url: rate-limits/opensky-rest-api.yml
   - type: Website
     url: https://opensky-network.org/
   - type: CapabilityMap
