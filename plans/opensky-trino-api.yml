@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 name: OpenSky Network Trino Historical Data Plans
 description: Access tiers for the OpenSky Network Trino SQL interface providing access to the full historical ADS-B dataset. Access is gated by eligibility review and is free for qualifying non-commercial research entities.
 url: https://openskynetwork.github.io/opensky-api/trino.html
@@ -44,3 +48,55 @@ plans:
       - name: Query Timeout
         limit: 30
         unit: minutes
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - metered
+  units:
+  - compute
+  - period
+  plans:
+  - name: Anonymous
+    access: other
+    model: free
+    model_how: derived
+    units:
+    - period
+    periods: []
+  - name: Standard (Authenticated)
+    access: other
+    model: free
+    model_how: derived
+    units:
+    - period
+    periods: []
+  - name: Active Feeder
+    access: other
+    model: free
+    model_how: derived
+    units:
+    - period
+    periods: []
+  - name: Licensed (Commercial)
+    access: other
+    model: metered
+    model_how: derived
+    units:
+    - compute
+    periods: []
+  - name: Research Access (Free)
+    access: other
+    model: free
+    model_how: derived
+    units:
+    - period
+    periods: []
+  - name: Commercial / Private Access
+    access: other
+    model: free
+    model_how: derived
+    units:
+    - period
+    periods: []

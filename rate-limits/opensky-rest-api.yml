@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 name: OpenSky Network REST API Rate Limits
 description: Rate limits for the OpenSky Network REST API are implemented via a credit system. Credits are consumed per request based on geographic bounding box size (for state vectors) or time range (for flight and track queries). Separate daily or hourly credit buckets apply per account tier.
 url: https://openskynetwork.github.io/opensky-api/rest.html
