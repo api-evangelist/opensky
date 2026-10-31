@@ -1,4 +1,4 @@
-# OpenSky Network (opensky)
+# OpenSky Network
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,86 +66,148 @@
 
 Open-source flight tracking network with a REST API for accessing real-time and historical ADS-B aircraft state vectors, flight tracks, and airport arrivals and departures. The network is powered by a community of volunteer ADS-B receiver operators and is intended for non-commercial research and educational use.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/apis.yml)
+**Areas:** Aviation · Flight Tracking · ADS-B · Aircraft · Airport · Real-Time · Historical Data
 
-## Tags
+## OpenSky Network on APIs.io
 
-- Aviation
-- Flight Tracking
-- ADS-B
-- Aircraft
-- Airport
-- Real-Time
-- Historical Data
+Everything profiled for OpenSky Network is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/opensky/](https://apis.io/providers/opensky/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (4)
 
-- **Created:** 2026-06-13
-- **Modified:** 2026-06-13
+- [OpenSky Network Trino Historical Data API](https://apis.io/apis/opensky/opensky-network-trino-historical-data-api/) — SQL query interface powered by Trino for accessing the full OpenSky historical dataset including state vectors, raw Mode S messages, ADS-C and MLAT data,…
+- [OpenSky Network Flights API](https://apis.io/apis/opensky/opensky-flights-api/) — Endpoints for retrieving flight records including arrivals, departures, and flights by aircraft.
+- [OpenSky Network State Vectors API](https://apis.io/apis/opensky/opensky-state-vectors-api/) — Endpoints for retrieving real-time and historical aircraft state vectors (position, velocity, altitude, etc.).
+- [OpenSky Network Tracks API](https://apis.io/apis/opensky/opensky-tracks-api/) — Endpoints for retrieving aircraft trajectory tracks with detailed waypoint data.
 
-## APIs
+### Published properties
 
-### OpenSky Network REST API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-REST API for retrieving real-time and historical ADS-B aircraft state vectors, flight tracks, and airport arrival and departure data from the OpenSky Network crowd-sourced receiver network.
+#### Agentic access (1)
 
-- **Human URL:** [https://openskynetwork.github.io/opensky-api/rest.html](https://openskynetwork.github.io/opensky-api/rest.html)
-- **Base URL:** `https://opensky-network.org/api`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Opensky Agentic Access](https://apis.io/agentic-access/opensky/opensky-agentic-access/)
 
-- Aircraft State Vectors
-- Flight Tracks
-- Airport Arrivals
-- Airport Departures
-- ADS-B
+#### JSON Schema (3)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://openskynetwork.github.io/opensky-api/rest.html)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/openapi/opensky-rest-api.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Authentication](https://openskynetwork.github.io/opensky-api/rest.html#authentication)
-- [Rate Limits](https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/rate-limits/opensky-rest-api.yml)
-- [Plans](https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/plans/opensky-rest-api.yml)
+- [FlightObject](https://apis.io/schemas/opensky/flight-object/)
+- [StateVectorResponse](https://apis.io/schemas/opensky/state-vector-response/)
+- [TrackResponse](https://apis.io/schemas/opensky/track-response/)
 
-### OpenSky Network Trino Historical Data API
+#### JSON-LD (1)
 
-SQL query interface powered by Trino for accessing the full OpenSky historical dataset including state vectors, raw Mode S messages, ADS-C and MLAT data, and flight records. Available to university-affiliated researchers, governmental organisations, and aviation authorities.
+Linked-data contexts for the provider's vocabulary.
 
-- **Human URL:** [https://openskynetwork.github.io/opensky-api/trino.html](https://openskynetwork.github.io/opensky-api/trino.html)
-- **Base URL:** `https://trino.opensky-network.org`
+- [Opensky Context](https://apis.io/jsonld/opensky/opensky-context/)
 
-#### Tags
+#### Examples (2)
 
-- Historical Data
-- State Vectors
-- Mode S
-- ADS-C
-- MLAT
-- SQL
+Example requests and responses.
 
-#### Properties
+- [States All Response](https://apis.io/examples/opensky/states-all-response/)
+- [Track Response](https://apis.io/examples/opensky/track-response/)
 
-- [Documentation](https://openskynetwork.github.io/opensky-api/trino.html)
-- [Rate Limits](https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/rate-limits/opensky-trino-api.yml)
-- [Plans](https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/plans/opensky-trino-api.yml)
+#### Collections (3)
 
-## Common Properties
+Postman and Open Collection request collections.
 
-- [Git Hub](https://github.com/openskynetwork)
-- [Git Hub  Repository](https://github.com/openskynetwork/opensky-api)
+- [OpenSky Network REST Flights API](https://apis.io/collections/opensky/open-opensky-flights-api/)
+- [OpenSky Network REST Flights State Vectors API](https://apis.io/collections/opensky/open-opensky-state-vectors-api/)
+- [OpenSky Network REST Flights Tracks API](https://apis.io/collections/opensky/open-opensky-tracks-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [OpenSky Network — jsonschema rules](https://apis.io/rules/opensky/opensky-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Opensky Authentication](https://apis.io/security/opensky/opensky-authentication/)
+- [Opensky Domain Security](https://apis.io/security/opensky/opensky-domain-security/)
+
+#### Plans and pricing (2)
+
+Published plans, tiers and prices.
+
+- [Opensky Rest Api](https://apis.io/plans/opensky/opensky-rest-api/)
+- [Opensky Trino Api](https://apis.io/plans/opensky/opensky-trino-api/)
+
+#### Rate limits (2)
+
+Published request limits.
+
+- [Opensky Rest Api](https://apis.io/rate-limits/opensky/opensky-rest-api/)
+- [Opensky Trino Api](https://apis.io/rate-limits/opensky/opensky-trino-api/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Opensky](https://apis.io/finops/opensky/opensky/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://opensky-network.org/)
 - [Documentation](https://openskynetwork.github.io/opensky-api/)
-- [Terms of Service](https://opensky-network.org/about/terms-of-use)
-- [Status](https://opensky-network.org/network/status)
-- [Login](https://opensky-network.org/login)
-- [Register](https://opensky-network.org/register)
-- [Fin Ops](https://raw.githubusercontent.com/api-evangelist/opensky/refs/heads/main/finops/opensky.yml)
-- [Contact](https://opensky-network.org/about/contact)
-- [Forum](https://community.opensky-network.org)
-- [Twitter](https://twitter.com/openskynetwork)
+- [Terms of service](https://opensky-network.org/about/terms-of-use)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** API Evangelist
-**Email:** kin@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 31.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 57.3 |
+| Contract governance | 9.8 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 26.2 |
+| Access clarity | 25.0 |
+
+**Agent readiness 32.5** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 20.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/opensky/](https://apis.io/providers/opensky/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for OpenSky Network: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/opensky/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
